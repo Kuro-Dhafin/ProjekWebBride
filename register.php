@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/hatton" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
       --gold: #D4AF37;
@@ -136,7 +137,7 @@
       display: none;
     }
     
-    .form-box input {
+    .form-box input, .form-box select {
       display: block;
       width: 100%;
       padding: 15px;
@@ -149,7 +150,7 @@
       transition: var(--transition);
     }
     
-    .form-box input:focus {
+    .form-box input:focus, .form-box select:focus {
       outline: none;
       border-color: var(--green);
       box-shadow: 0 0 0 3px rgba(46, 139, 87, 0.1);
@@ -340,16 +341,29 @@
     }
     
     .step-btn {
-      padding: 10px 20px;
+      padding: 12px 0;
       background: var(--light-bg);
       border: 1px solid var(--gold);
       border-radius: 5px;
       cursor: pointer;
       transition: var(--transition);
+      width: 48%;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .next-btn {
+      background: linear-gradient(to right, var(--green), var(--dark-green));
+      color: white;
+      margin-left: auto;
     }
     
     .step-btn:hover {
       background: rgba(46, 139, 87, 0.1);
+    }
+    
+    .next-btn:hover {
+      background: linear-gradient(to right, var(--dark-green), var(--green));
     }
     
     .step-btn:disabled {
@@ -396,7 +410,7 @@
           </div>
           
           <div class="step-navigation">
-            <button type="button" class="step-btn" onclick="nextStep()">Next</button>
+            <button type="button" class="step-btn next-btn" onclick="nextStep()">Next</button>
           </div>
         </div>
         
@@ -409,7 +423,7 @@
           
           <div class="step-navigation">
             <button type="button" class="step-btn" onclick="prevStep()">Back</button>
-            <button type="button" class="step-btn" onclick="nextStep()">Next</button>
+            <button type="button" class="step-btn next-btn" onclick="nextStep()">Next</button>
           </div>
         </div>
         
@@ -436,7 +450,15 @@
           
           <div id="vendor-fields" class="vendor-fields">
             <input type="text" name="company_name" placeholder="COMPANY NAME">
-            <input type="text" name="service_type" placeholder="TYPE OF SERVICE">
+            <select name="service_type" required>
+              <option value="" disabled selected>SELECT SERVICE TYPE</option>
+              <option value="photography">Photography</option>
+              <option value="venue">Venue</option>
+              <option value="catering">Catering</option>
+              <option value="florist">Florist</option>
+              <option value="music">Music</option>
+              <option value="other">Other</option>
+            </select>
           </div>
           
           <div class="step-navigation">
@@ -450,7 +472,6 @@
     </div>
   </div>
 
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script>
     let currentStep = 1;
     const totalSteps = 3;
@@ -480,7 +501,7 @@
         // Show vendor fields if vendor is selected and we're on last step
         if (currentStep === totalSteps && userType === 'vendor') {
           document.getElementById('vendor-fields').style.display = 'block';
-          document.querySelectorAll('#vendor-fields input').forEach(input => {
+          document.querySelectorAll('#vendor-fields input, #vendor-fields select').forEach(input => {
             input.required = true;
           });
         }
@@ -504,7 +525,7 @@
       const stepElement = document.getElementById(`step${step}`);
       
       // Validate all required inputs in current step
-      const inputs = stepElement.querySelectorAll('input[required]');
+      const inputs = stepElement.querySelectorAll('input[required], select[required]');
       inputs.forEach(input => {
         if (!input.value.trim()) {
           input.style.borderColor = 'red';

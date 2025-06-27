@@ -358,7 +358,6 @@
   </div>
 
   <script>
-    // Toggle password visibility
     function togglePassword() {
       const passwordInput = document.getElementById('password');
       const eyeIcon = document.querySelector('.toggle-password i');
@@ -372,14 +371,12 @@
       }
     }
     
-    // Form submission with validation
     document.getElementById('loginForm').addEventListener('submit', function(e) {
       e.preventDefault();
       
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
       
-      // Simple validation
       if (!email || !password) {
         showError('Please fill in all fields');
         return;
@@ -390,7 +387,6 @@
         return;
       }
       
-      // Simulate login process
       simulateLogin();
     });
     
@@ -400,7 +396,6 @@
     }
     
     function showError(message) {
-      // In a real app, you would show this error in the UI
       console.error(message);
       alert(message);
     }
@@ -409,22 +404,22 @@
       const submitBtn = document.querySelector('#loginForm button');
       const originalText = submitBtn.textContent;
       
-      // Show loading state
+    
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SIGNING IN...';
       submitBtn.disabled = true;
       
-      // Simulate API call
+      
       setTimeout(() => {
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
         
-        // In a real app, you would redirect on successful login
+       
         alert('Login successful! Redirecting...');
-        // window.location.href = 'dashboard.php';
+   
       }, 2000);
     }
     
-    // Add floating animation to illustration
+    
     const illustration = document.querySelector('.illustration');
     illustration.addEventListener('mouseenter', () => {
       illustration.style.animation = 'none';
