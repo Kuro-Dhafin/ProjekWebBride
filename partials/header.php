@@ -28,8 +28,8 @@
     <div class="container mx-auto flex justify-between items-center px-4">
     <h1 class="text-2xl font-bold text-black font-serif tracking-wider">Sunne Wedding</h1>
       <nav class="space-x-6">
-        <a href="index.php" class="text-gray-600 hover:text-red transition-colors duration-300">Home</a>
-        <a href="vendors.php" class="text-gray-600 hover:text-red transition-colors duration-300">Vendors</a>
+        <a href="index.php" class="text-gray-600 hover:text-white transition-colors duration-300">Home</a>
+        <a href="vendors.php" class="text-gray-600 hover:text-white transition-colors duration-300">Vendors</a>
       </nav>
     </div>
 </header>
