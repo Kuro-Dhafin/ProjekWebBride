@@ -1,0 +1,3 @@
+backgroundImage: {
+  'home-bg': "url('./assets/photo/home-bg.jpg')", // Sesuaikan path gambar kamu
+}
