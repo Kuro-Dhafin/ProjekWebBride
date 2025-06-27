@@ -13,6 +13,8 @@
       <nav class="space-x-6">
   <a href="index.php" class="hover:text-pink-600">Home</a>
   <a href="vendors.php" class="hover:text-pink-600">Vendors</a>
+  <a href="login.php" class="hover:text-pink-600">Login</a>
+  <a href="register.php" class="hover:text-pink-600">Register</a>
 </nav>
 
     </div>
