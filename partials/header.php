@@ -30,7 +30,7 @@
       <nav class="space-x-6">
         <a href="index.php" class="text-gray-600 hover:text-white transition-colors duration-300">Home</a>
         <a href="vendors.php" class="text-gray-600 hover:text-white transition-colors duration-300">Vendors</a>
-        <a href="cart.php" class="text-gray-600 hover:text-white transition-colors duration-300">Vendors</a>
+        <a href="cart.php" class="text-gray-600 hover:text-white transition-colors duration-300">Cart</a>
       </nav>
     </div>
 </header>
