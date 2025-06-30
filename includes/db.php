@@ -2,21 +2,24 @@
 require_once 'config.php';
 
 class Database {
-    private $conn;
-
-    public function __construct() {
-        $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-        
-        if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
-        }
-    }
+    private $host = "localhost";
+    private $db_name = "wedstory_lite";
+    private $username = "root";
+    private $password = "";
+    public $conn;
 
     public function getConnection() {
+        $this->conn = null;
+
+        try {
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name,
+                                  $this->username, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $exception) {
+            die("Connection error: " . $exception->getMessage());
+        }
+
         return $this->conn;
     }
 }
 
-$db = new Database();
-$conn = $db->getConnection();
-?>

@@ -1,15 +1,8 @@
 <?php
-$host = 'localhost';
-$db = 'wedstory_lite';
-$user = 'root';
-$pass = '';
-$dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'wedstory_lite');
+define('DB_USER', 'root');
+define('DB_PASS', '');
 
-try {
-  $pdo = new PDO($dsn, $user, $pass, [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-  ]);
-} catch (PDOException $e) {
-  die("Database connection failed: " . $e->getMessage());
-}
+define('DSN', "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4");
+?>

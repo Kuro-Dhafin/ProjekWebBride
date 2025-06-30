@@ -49,7 +49,7 @@ $images = $galeri->fetchAll(PDO::FETCH_ASSOC);
       <!-- Harga dan Tombol Tambah ke Keranjang -->
       <div class="bg-gray-100 p-4 rounded shadow text-center">
         <p class="text-xl font-bold text-pink-600 mb-2">Rp <?= number_format($vendor['price'], 0, ',', '.') ?></p>
-        <form action="add_to_cart.php" method="POST">
+        <form action="/includes/add_to_cart.php" method="POST">
           <input type="hidden" name="vendor_id" value="<?= $vendor['id'] ?>">
           <input type="hidden" name="vendor_name" value="<?= htmlspecialchars($vendor['company_name']) ?>">
           <input type="hidden" name="price" value="<?= $vendor['price'] ?>">
