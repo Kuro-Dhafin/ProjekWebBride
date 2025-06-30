@@ -1,3 +1,30 @@
+<?php
+require_once 'config.php';
+require_once 'class.register.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $reg = new Register($conn);
+  $data = $_POST;
+
+  if ($data['password'] !== $data['confirm_password']) {
+    die("Password confirmation does not match.");
+  }
+
+  if ($reg->isEmailTaken($data['email'])) {
+    die("Email already registered.");
+  }
+
+  $success = $reg->registerUser($data);
+
+  if ($success) {
+    header("Location: login.php?success=1");
+    exit;
+  } else {
+    die("Registration failed.");
+  }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -391,7 +418,7 @@
         <div class="progress" id="progress"></div>
       </div>
       
-      <form action="register.php" method="post" id="registration-form">
+      <form action="/includes/class.register.php" method="post" id="registration-form">
         <!-- Step 1: Account Type -->
         <div class="form-step active" id="step1">
           <div class="user-type">
