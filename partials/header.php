@@ -27,7 +27,7 @@
   <header class="py-4 bg-gradient-to-r from-softpeach to-blush shadow-md sticky top-0 z-50">
     <div class="container mx-auto flex justify-between items-center px-4">
       <div class="flex items-center gap-3">
-        <img src="https://cdn-icons-png.flaticon.com/512/3176/3176367.png" alt="Logo" class="w-10 h-10 rounded-full shadow-md border-2 border-pink-300 bg-white">
+        <img src="https://res.cloudinary.com/dwuwc16mu/image/upload/v1751458620/w_ag1gxp.png" alt="Logo" class="w-10 h-10 rounded-full shadow-md border-2 border-pink-300 bg-white">
         <span class="text-2xl font-extrabold text-pink-600 font-serif tracking-wider drop-shadow">Sunne Wedding</span>
       </div>
       <nav class="space-x-6">
