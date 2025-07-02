@@ -68,14 +68,17 @@
   }
 
   function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    setSlide(currentSlide);
+    setSlide((currentSlide + 1) % totalSlides);
   }
 
   function prevSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    setSlide(currentSlide);
+    setSlide((currentSlide - 1 + totalSlides) % totalSlides);
   }
+
+  // Inisialisasi posisi slide saat halaman dimuat
+  document.addEventListener('DOMContentLoaded', function() {
+    setSlide(0);
+  });
 </script>
 
 <?php include('partials/footer.php'); ?>

@@ -1,5 +1,4 @@
 <?php
-<?php
 include('partials/header.php');
 include('config/db.php');
 
@@ -46,5 +45,3 @@ if (!$vendor) {
     </form>
   </div>
 </section>
-
-<?php include('partials/footer.php'); ?>
