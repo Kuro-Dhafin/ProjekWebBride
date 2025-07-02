@@ -44,7 +44,21 @@
            Register
         </a>
         <p class="text-center text-gray-500 text-sm">
-          or <a href="#vendors" class="text-blush underline">continue as guest</a>
+            or <a href="#vendors" class="text-blush underline">continue as guest</a>
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+              const guestLink = document.querySelector('a[href="#vendors"]');
+              if (guestLink) {
+              guestLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                const vendorsSection = document.getElementById('vendors');
+                if (vendorsSection) {
+                vendorsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+              });
+              }
+            });
+            </script>
         </p>
       </div>
     </div>

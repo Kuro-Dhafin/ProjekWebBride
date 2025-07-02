@@ -9,8 +9,8 @@
       <div id="carousel" class="flex transition-all duration-700 ease-in-out">
         <?php
         $topVendors = [
-          ["name" => "Moment Capture", "image" => "assets/img/dummy1.jpg", "rating" => 4.9],
-          ["name" => "Shutter Bliss", "image" => "assets/img/dummy2.jpg", "rating" => 4.8],
+          ["name" => "Moment Capture", "image" => "https://res.cloudinary.com/dwuwc16mu/image/upload/v1751214431/pexels-minan1398-758898_u9rb5l.jpg", "rating" => 4.9],
+          ["name" => "Shutter Bliss", "image" => "https://res.cloudinary.com/dwuwc16mu/image/upload/v1751214684/pexels-jonathanborba-3397027_urbm3c.jpg", "rating" => 4.8],
         ];
         foreach ($topVendors as $v) {
           echo "
