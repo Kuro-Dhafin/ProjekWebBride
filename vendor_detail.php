@@ -1,23 +1,26 @@
 <?php
-include('partials/header.php');
-include('config/db.php'); // Pastikan ini berisi koneksi ke MySQL
+include 'partials/header.php';
+include __DIR__ . '/includes/db.php';  
 
-// Ambil vendor_id dari URL
+
+$db  = new Database();
+$pdo = $db->getConnection();
+
+
 $vendor_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-// Query data vendor
+
 $stmt = $pdo->prepare("SELECT * FROM vendors WHERE id = ?");
 $stmt->execute([$vendor_id]);
 $vendor = $stmt->fetch(PDO::FETCH_ASSOC);
 
-// Jika tidak ada vendor
 if (!$vendor) {
     echo "<p class='text-center text-red-500'>Vendor tidak ditemukan.</p>";
-    include('partials/footer.php');
+    include 'partials/footer.php';
     exit;
 }
 
-// Ambil galeri vendor
+
 $galeri = $pdo->prepare("SELECT * FROM vendor_gallery WHERE vendor_id = ?");
 $galeri->execute([$vendor_id]);
 $images = $galeri->fetchAll(PDO::FETCH_ASSOC);
@@ -26,19 +29,19 @@ $images = $galeri->fetchAll(PDO::FETCH_ASSOC);
 <section class="py-16 bg-white">
   <div class="container mx-auto px-6 flex flex-col md:flex-row justify-center items-start gap-16">
 
-    <!-- Left Column: Vendor Info -->
+   
     <div class="w-full md:w-1/2 flex flex-col items-center text-center">
-      <!-- Profile Image -->
+      
       <div class="w-36 h-36 rounded-full overflow-hidden border-4 border-pink-500 mb-6 shadow-md">
         <img src="uploads/<?= htmlspecialchars($vendor['profile_image']) ?>" alt="Vendor Profile" class="object-cover w-full h-full">
       </div>
 
-      <!-- Vendor Name -->
+      
       <h2 class="text-3xl font-bold mb-2"><?= htmlspecialchars($vendor['company_name']) ?></h2>
       <p class="text-base text-gray-500">📍 <?= htmlspecialchars($vendor['location']) ?></p>
       <p class="uppercase text-sm text-pink-600 mb-4 tracking-wide"><?= htmlspecialchars($vendor['service_type']) ?> Vendor</p>
 
-      <!-- Filosofi -->
+      
       <div class="max-w-md mb-6">
         <h3 class="font-bold text-lg mb-3 text-gray-700">FILOSOFI SAYA</h3>
         <p class="text-gray-800 leading-relaxed">
@@ -46,7 +49,7 @@ $images = $galeri->fetchAll(PDO::FETCH_ASSOC);
         </p>
       </div>
 
-      <!-- Harga dan Tombol Tambah ke Keranjang -->
+      
       <div class="bg-gray-100 p-4 rounded shadow text-center">
         <p class="text-xl font-bold text-pink-600 mb-2">Rp <?= number_format($vendor['price'], 0, ',', '.') ?></p>
         <form action="/includes/add_to_cart.php" method="POST">
@@ -58,7 +61,7 @@ $images = $galeri->fetchAll(PDO::FETCH_ASSOC);
       </div>
     </div>
 
-    <!-- Right Column: Carousel -->
+    
     <div class="w-full md:w-1/3">
       <div class="relative overflow-hidden rounded-lg shadow-lg">
         <div id="miniCarousel" class="flex transition-transform duration-500">
@@ -67,7 +70,7 @@ $images = $galeri->fetchAll(PDO::FETCH_ASSOC);
           <?php endforeach; ?>
         </div>
 
-        <!-- Arrows -->
+        
         <button onclick="prevMini()" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-200">&#8592;</button>
         <button onclick="nextMini()" class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-200">&#8594;</button>
       </div>
