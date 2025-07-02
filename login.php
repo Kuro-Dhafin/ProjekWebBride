@@ -1,10 +1,13 @@
 <?php
-require_once 'includes/config.php';
-
+ob_start();
 session_start();
+require_once 'includes/db.php';
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $email = $_POST['email'] ?? '';
+$db = new Database();
+$conn = $db->getConnection();
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+  $email    = $_POST['email']    ?? '';
   $password = $_POST['password'] ?? '';
 
   $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
@@ -13,13 +16,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if ($user && password_verify($password, $user['password'])) {
     $_SESSION['user'] = $user;
-    header("Location: dashboard.php");
+
+    // Debug apakah header masih bisa dikirim
+    if (headers_sent($file, $line)) {
+      die("⛔ Headers sudah dikirim di $file baris $line");
+    }
+
+    // Gunakan path absolut
+    header("Location: /ProjekWebBride/{$user['role']}/dashboard.php");
     exit;
   } else {
-    echo "<script>alert('Invalid email or password');</script>";
+    // Gagal → redirect kembali
+    header("Location: /ProjekWebBride/login.php?error=invalid");
+    exit;
   }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -339,6 +352,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </style>
 </head>
 <body>
+
   <div class="container">
     <div class="logo">
       <h1>Sunne</h1>
@@ -356,15 +370,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="auth-form">
       <h2>WELCOME BACK</h2>
-      <form method="post" id="loginForm">
+      <form method="POST" id="loginForm">
         <div class="input-group">
           <i class="fas fa-envelope input-icon"></i>
-          <input type="email" id="email" placeholder="Email Address" required>
+          <input type="email" id="email" name="email" required>
         </div>
         
         <div class="input-group password-container">
           <i class="fas fa-lock input-icon"></i>
-          <input type="password" id="password" placeholder="Password" required>
+          <input type="password" id="password" name="password" required>
           <span class="toggle-password" onclick="togglePassword()">
             <i class="fas fa-eye"></i>
           </span>
@@ -380,76 +394,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </div>
 
-  <script>
-    function togglePassword() {
-      const passwordInput = document.getElementById('password');
-      const eyeIcon = document.querySelector('.toggle-password i');
-      
-      if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        eyeIcon.classList.replace('fa-eye', 'fa-eye-slash');
-      } else {
-        passwordInput.type = 'password';
-        eyeIcon.classList.replace('fa-eye-slash', 'fa-eye');
-      }
+ <script>
+  function togglePassword() {
+    const passwordInput = document.getElementById('password');
+    const eyeIcon = document.querySelector('.toggle-password i');
+    
+    if (passwordInput.type === 'password') {
+      passwordInput.type = 'text';
+      eyeIcon.classList.replace('fa-eye', 'fa-eye-slash');
+    } else {
+      passwordInput.type = 'password';
+      eyeIcon.classList.replace('fa-eye-slash', 'fa-eye');
     }
-    
-    document.getElementById('loginForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const email = document.getElementById('email').value;
-      const password = document.getElementById('password').value;
-      
-      if (!email || !password) {
-        showError('Please fill in all fields');
-        return;
-      }
-      
-      if (!validateEmail(email)) {
-        showError('Please enter a valid email address');
-        return;
-      }
-      
-      simulateLogin();
-    });
-    
-    function validateEmail(email) {
-      const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return re.test(email);
-    }
-    
-    function showError(message) {
-      console.error(message);
-      alert(message);
-    }
-    
-    function simulateLogin() {
-      const submitBtn = document.querySelector('#loginForm button');
-      const originalText = submitBtn.textContent;
-      
-    
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SIGNING IN...';
-      submitBtn.disabled = true;
-      
-      
-      setTimeout(() => {
-        submitBtn.textContent = originalText;
-        submitBtn.disabled = false;
-        
-       
-        alert('Login successful! Redirecting...');
-   
-      }, 2000);
-    }
-    
-    
-    const illustration = document.querySelector('.illustration');
-    illustration.addEventListener('mouseenter', () => {
-      illustration.style.animation = 'none';
-      setTimeout(() => {
-        illustration.style.animation = 'float 3s ease-in-out infinite';
-      }, 10);
-    });
-  </script>
+  }
+
+
 </body>
 </html>

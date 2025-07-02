@@ -26,4 +26,4 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 <header>
   <h1>Sunne Admin Dashboard</h1>
 </header>
-<?php include 'navbar.php'; ?>
+<?php include 'admin_nav.php'; ?>
