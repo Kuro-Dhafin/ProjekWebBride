@@ -8,8 +8,7 @@
   <footer class="bg-gradient-to-r from-softpeach to-blush text-gray-700 mt-16">
     <div class="container mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
       <div class="flex items-center gap-3">
-        <img src="https://cdn-icons-png.flaticon.com/512/3176/3176367.png" alt="Logo" class="w-10 h-10 rounded-full bg-white border-2 border-pink-300 shadow">
-        <span class="text-xl font-bold text-pink-600 font-serif tracking-wider">Sunne Wedding</span>
+        <span class="text-xl font-bold text-pink-600 font-serif tracking-wider">WedStory</span>
       </div>
       <div class="text-center md:text-left">
         <p class="text-base font-medium mb-1">Mewujudkan hari bahagia Anda dengan vendor terbaik & layanan profesional.</p>
@@ -21,7 +20,7 @@
       </div>
     </div>
     <div class="text-center text-xs text-gray-500 py-2 border-t border-pink-200">
-      &copy; <?= date('Y') ?> Sunne Wedding. All rights reserved.
+      &copy; <?= date('Y') ?> WedStory. All rights reserved.
     </div>
   </footer>
 </body>
