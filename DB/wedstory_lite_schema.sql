@@ -123,3 +123,57 @@ VALUES
 INSERT INTO transaction_items (transaction_id, vendor_id, price, quantity)
 VALUES
 (1, 1, 2500000, 1);
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    notelp VARCHAR(20),
+    birth DATE,
+    address VARCHAR(255),
+    password VARCHAR(255) NOT NULL,
+    user_type ENUM('client','vendor') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE vendors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    company_name VARCHAR(100) NOT NULL,
+    service_type VARCHAR(50) NOT NULL,
+    profile_image VARCHAR(255),
+    location VARCHAR(100),
+    description TEXT,
+    price INT,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+
+    -- Tabel utama vendor
+CREATE TABLE vendors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    company_name VARCHAR(100) NOT NULL,
+    location VARCHAR(100),
+    service_type VARCHAR(50),
+    description TEXT,
+    price INT,
+    profile_image VARCHAR(255)
+);
+
+-- Tabel galeri vendor (relasi ke vendors)
+CREATE TABLE vendor_gallery (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    vendor_id INT NOT NULL,
+    image_path VARCHAR(255) NOT NULL,
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (vendor_id) REFERENCES vendors(id) ON DELETE CASCADE
+);
+
+-- (Opsional) Tabel users jika ingin relasi vendor ke user
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    user_type ENUM('client','vendor') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+);
