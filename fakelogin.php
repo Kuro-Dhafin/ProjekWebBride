@@ -407,7 +407,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       eyeIcon.classList.replace('fa-eye-slash', 'fa-eye');
     }
   }
-
-
-</body>
-</html>

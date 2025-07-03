@@ -1,0 +1,18 @@
+{
+    "name": "dell/projek-web-bride",
+    "autoload": {
+        "psr-4": {
+            "Dell\\ProjekWebBride\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kuro-Dhafin",
+            "email": "75976713+Kuro-Dhafin@users.noreply.github.com"
+        }
+    ],
+    "require": {
+        "dompdf/dompdf": "^3.1",
+        "phpmailer/phpmailer": "^6.10"
+    }
+}

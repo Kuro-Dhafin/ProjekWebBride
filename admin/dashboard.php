@@ -2,7 +2,8 @@
 session_start();
 
 // Cek apakah user adalah admin, kalau tidak redirect (opsional)
-if (!isset($_SESSION['user']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
+
   header("Location: ../login.php");
   exit;
 }
