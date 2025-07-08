@@ -49,44 +49,9 @@
       text-shadow: 0 2px 4px rgba(0,0,0,0.2);
       transition: all 0.3s ease;
     ">
-      &copy; <?= date('Y') ?> Sunne Wedding Management
+      &copy; <?= date('Y') ?> Sunne Wedding Organizer
     </div>
 
-    <!-- Social media links -->
-    <div style="
-      display: flex;
-      gap: 1.5rem;
-      margin-top: 0.5rem;
-    ">
-      <a href="#" style="
-        color: white;
-        font-size: 1.2rem;
-        transition: all 0.3s ease;
-        transform: scale(1);
-      " onmouseover="this.style.transform='scale(1.2)'" 
-      onmouseout="this.style.transform='scale(1)'">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="#" style="
-        color: white;
-        font-size: 1.2rem;
-        transition: all 0.3s ease;
-        transform: scale(1);
-      " onmouseover="this.style.transform='scale(1.2)'" 
-      onmouseout="this.style.transform='scale(1)'">
-        <i class="fab fa-facebook"></i>
-      </a>
-      <a href="#" style="
-        color: white;
-        font-size: 1.2rem;
-        transition: all 0.3s ease;
-        transform: scale(1);
-      " onmouseover="this.style.transform='scale(1.2)'" 
-      onmouseout="this.style.transform='scale(1)'">
-        <i class="fab fa-whatsapp"></i>
-      </a>
-    </div>
-  </div>
 
   <!-- CSS Animations -->
   <style>

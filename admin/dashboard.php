@@ -467,3 +467,4 @@ $recentTransactions = $stmtRecent->fetchAll(PDO::FETCH_ASSOC);
   <?php include '../includes/admin_footer.php'; ?>
 </body>
 </html>
+
