@@ -258,213 +258,314 @@ $recentTransactions = $stmtRecent->fetchAll(PDO::FETCH_ASSOC);
       font-size: 1.1rem;
     }
     
-    /* Recent Transactions Section */
-    .recent-transactions {
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Previous head content remains the same -->
+  <style>
+    /* Add these new styles */
+    .chart-container {
       background: var(--white);
       border-radius: 20px;
       padding: 30px;
       box-shadow: var(--pink-shadow);
       margin-top: 40px;
+      position: relative;
     }
     
-    .section-header {
+    .chart-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 25px;
     }
     
-    .section-header h2 {
-      color: var(--dark-pink);
-      font-size: 1.8rem;
-      margin: 0;
-    }
-    
-    .transaction-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    
-    .transaction-table th {
+    .chart-placeholder {
+      height: 300px;
       background: var(--light-pink);
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: var(--dark-pink);
-      padding: 12px 15px;
-      text-align: left;
-    }
-    
-    .transaction-table td {
-      padding: 12px 15px;
-      border-bottom: 1px solid var(--light-pink);
-    }
-    
-    .transaction-table tr:last-child td {
-      border-bottom: none;
-    }
-    
-    .transaction-table tr:hover {
-      background-color: rgba(255, 222, 235, 0.3);
-    }
-    
-    .badge {
-      display: inline-block;
-      padding: 5px 10px;
-      border-radius: 50px;
-      font-size: 0.75rem;
       font-weight: 600;
     }
     
-    .badge-success {
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+    
+    .stat-card {
+      background: var(--white);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: var(--pink-shadow);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .stat-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--light-pink);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-pink);
+      font-size: 1.2rem;
+    }
+    
+    .stat-content h4 {
+      margin: 0;
+      color: var(--dark-pink);
+      font-size: 1rem;
+    }
+    
+    .stat-content p {
+      margin: 5px 0 0;
+      color: var(--primary-pink);
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    
+    .transaction-status {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .status-badge {
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .status-success {
       background: rgba(40, 167, 69, 0.1);
       color: #28a745;
     }
     
-    .notification {
-      background-color: var(--white);
-      color: var(--dark-pink);
-      border-left: 4px solid var(--primary-pink);
-      padding: 15px 25px;
-      margin: 20px auto;
-      max-width: 600px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      box-shadow: var(--pink-shadow);
-      animation: fadeIn 0.5s ease;
+    .status-pending {
+      background: rgba(255, 193, 7, 0.1);
+      color: #ffc107;
     }
     
-    .notification::before {
-      content: "\f00c";
-      font-family: "Font Awesome 6 Free";
-      font-weight: 900;
-      color: var(--primary-pink);
-      margin-right: 15px;
-      font-size: 1.2rem;
+    .status-failed {
+      background: rgba(220, 53, 69, 0.1);
+      color: #dc3545;
     }
     
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(232, 62, 140, 0.4); }
-      70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(232, 62, 140, 0); }
-      100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(232, 62, 140, 0); }
-    }
-    
-    .pulse {
-      animation: pulse 2s infinite;
-    }
-    
-    /* Modern scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    
-    ::-webkit-scrollbar-track {
-      background: var(--light-pink);
-    }
-    
-    ::-webkit-scrollbar-thumb {
-      background: var(--primary-pink);
-      border-radius: 4px;
+    .view-all {
+      text-align: center;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-  <!-- Logout notification -->
-  <?php if ($logoutMessage): ?>
-    <div class="notification pulse">
-      <?= $logoutMessage ?>
-    </div>
-  <?php endif; ?>
+  <!-- Previous body content remains the same until the recent transactions section -->
 
-  <!-- Dashboard Content -->
-  <div class="container">
-    <div class="dashboard-header">
-      <h1>Admin Dashboard</h1>
-      <p>Selamat datang di panel administrasi</p>
-      <div class="action-buttons">
-        <button class="btn btn-pink">
-          <i class="fas fa-plus"></i> Tambah Data
-        </button>
-        <button class="btn btn-outline-pink">
-          <i class="fas fa-cog"></i> Pengaturan
-        </button>
+  <!-- Sales Chart Section -->
+  <div class="chart-container">
+    <div class="chart-header">
+      <h2><i class="fas fa-chart-line"></i> Sales Overview</h2>
+      <div class="transaction-status">
+        <span class="status-badge status-success">Completed: 24</span>
+        <span class="status-badge status-pending">Pending: 5</span>
+        <span class="status-badge status-failed">Failed: 2</span>
       </div>
     </div>
-    
-    <div class="dashboard-grid">
-      <div class="card">
-        <div class="card-icon">
-          <i class="fas fa-users"></i>
-        </div>
-        <h3>Total Vendors</h3>
-        <span class="count"><?= $vendorCount ?></span>
-        <span class="subtext">Vendor terdaftar</span>
-        <button class="btn btn-outline-pink btn-sm" style="margin-top: 15px;">
-          <i class="fas fa-list"></i> Lihat Semua
-        </button>
-      </div>
-      
-      <div class="card">
-        <div class="card-icon">
-          <i class="fas fa-shopping-cart"></i>
-        </div>
-        <h3>Total Transactions</h3>
-        <span class="count"><?= $checkoutCount ?></span>
-        <span class="subtext">Transaksi berhasil</span>
-        <button class="btn btn-outline-pink btn-sm" style="margin-top: 15px;">
-          <i class="fas fa-chart-line"></i> Lihat Grafik
-        </button>
-      </div>
+    <div class="chart-placeholder">
+      [Sales Chart Visualization Would Appear Here]
     </div>
     
-    <!-- Recent Transactions Section -->
-    <div class="recent-transactions">
-      <div class="section-header">
-        <h2><i class="fas fa-history"></i> Transaksi Terbaru</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-wallet"></i>
+        </div>
+        <div class="stat-content">
+          <h4>Total Revenue</h4>
+          <p>Rp 12,450,000</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-calendar-check"></i>
+        </div>
+        <div class="stat-content">
+          <h4>This Month</h4>
+          <p>Rp 3,250,000</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-percentage"></i>
+        </div>
+        <div class="stat-content">
+          <h4>Conversion</h4>
+          <p>72%</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">
+          <i class="fas fa-user-plus"></i>
+        </div>
+        <div class="stat-content">
+          <h4>New Customers</h4>
+          <p>18</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Enhanced Recent Transactions Section -->
+  <div class="recent-transactions">
+    <div class="section-header">
+      <h2><i class="fas fa-history"></i> Recent Transactions</h2>
+      <div>
+        <button class="btn btn-outline-pink btn-sm">
+          <i class="fas fa-download"></i> Export
+        </button>
         <button class="btn btn-pink btn-sm">
           <i class="fas fa-sync-alt"></i> Refresh
         </button>
       </div>
-      
-      <table class="transaction-table">
-        <thead>
-          <tr>
-            <th>ID Transaksi</th>
-            <th>Tanggal</th>
-            <th>Jumlah</th>
-            <th>Status</th>
-            <th>Aksi</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php if (!empty($recentTransactions)): ?>
-            <?php foreach ($recentTransactions as $transaction): ?>
-              <tr>
-                <td>#<?= substr($transaction['id'], 0, 8) ?></td>
-                <td><?= date('d M Y', strtotime($transaction['created_at'])) ?></td>
-                <td>Rp <?= number_format($transaction['amount'], 0, ',', '.') ?></td>
-                <td><span class="badge badge-success">Berhasil</span></td>
-                <td>
-                  <button class="btn btn-outline-pink btn-sm">
-                    <i class="fas fa-eye"></i> Detail
-                  </button>
-                </td>
-              </tr>
-            <?php endforeach; ?>
-          <?php else: ?>
-            <tr>
-              <td colspan="5" style="text-align: center;">Tidak ada transaksi terbaru</td>
-            </tr>
-          <?php endif; ?>
-        </tbody>
-      </table>
+    </div>
+    
+    <table class="transaction-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Customer</th>
+          <th>Date</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>#TRX-78945</td>
+          <td>Sarah Johnson</td>
+          <td>12 Jun 2023</td>
+          <td>Rp 1,250,000</td>
+          <td><span class="badge badge-success">Completed</span></td>
+          <td>
+            <button class="btn btn-outline-pink btn-sm">
+              <i class="fas fa-eye"></i> View
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>#TRX-78944</td>
+          <td>Michael Wong</td>
+          <td>11 Jun 2023</td>
+          <td>Rp 2,500,000</td>
+          <td><span class="badge badge-success">Completed</span></td>
+          <td>
+            <button class="btn btn-outline-pink btn-sm">
+              <i class="fas fa-eye"></i> View
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>#TRX-78943</td>
+          <td>Lisa Chen</td>
+          <td>10 Jun 2023</td>
+          <td>Rp 1,750,000</td>
+          <td><span class="badge" style="background: rgba(255, 193, 7, 0.1); color: #ffc107;">Pending</span></td>
+          <td>
+            <button class="btn btn-outline-pink btn-sm">
+              <i class="fas fa-eye"></i> View
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>#TRX-78942</td>
+          <td>David Smith</td>
+          <td>9 Jun 2023</td>
+          <td>Rp 3,000,000</td>
+          <td><span class="badge badge-success">Completed</span></td>
+          <td>
+            <button class="btn btn-outline-pink btn-sm">
+              <i class="fas fa-eye"></i> View
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>#TRX-78941</td>
+          <td>Emma Davis</td>
+          <td>8 Jun 2023</td>
+          <td>Rp 950,000</td>
+          <td><span class="badge" style="background: rgba(220, 53, 69, 0.1); color: #dc3545;">Failed</span></td>
+          <td>
+            <button class="btn btn-outline-pink btn-sm">
+              <i class="fas fa-eye"></i> View
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="view-all">
+      <button class="btn btn-outline-pink">
+        <i class="fas fa-list"></i> View All Transactions
+      </button>
     </div>
   </div>
 
   <?php include '../includes/admin_footer.php'; ?>
+
+  <!-- Add Chart.js for visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    // Sample chart initialization
+    document.addEventListener('DOMContentLoaded', function() {
+      const ctx = document.createElement('canvas');
+      ctx.height = 300;
+      document.querySelector('.chart-placeholder').innerHTML = '';
+      document.querySelector('.chart-placeholder').appendChild(ctx);
+      
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+          datasets: [{
+            label: 'Monthly Sales',
+            data: [4500000, 5200000, 4800000, 6100000, 5900000, 6800000],
+            backgroundColor: 'rgba(232, 62, 140, 0.1)',
+            borderColor: '#e83e8c',
+            borderWidth: 2,
+            tension: 0.4,
+            fill: true
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'top',
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: {
+                callback: function(value) {
+                  return 'Rp ' + value.toLocaleString();
+                }
+              }
+            }
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
-
