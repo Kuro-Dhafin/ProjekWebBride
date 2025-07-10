@@ -1,4 +1,4 @@
-<section class="...">...</section>
+<section class="..."></section>
 
 <?php include('partials/header.php'); ?>
 <?php include('partials/home.php'); ?>

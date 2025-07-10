@@ -5,8 +5,8 @@ $db = new Database();
 $conn = $db->getConnection();
 
 // Ganti email target dan password aslinya
-$email = 'lizdefliz@gmail.com';         // <-- sesuaikan dengan data kamu
-$plainPassword = '63978dcb04';         // <-- sesuaikan juga
+$email = 'user1@example.com';         // <-- sesuaikan dengan data kamu
+$plainPassword = 'password1';         // <-- sesuaikan juga
 
 // Buat hash password
 $hashedPassword = password_hash($plainPassword, PASSWORD_DEFAULT);
