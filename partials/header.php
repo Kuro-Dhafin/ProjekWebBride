@@ -30,10 +30,11 @@
         <img src="https://res.cloudinary.com/dwuwc16mu/image/upload/v1751458620/w_ag1gxp.png" alt="Logo" class="w-10 h-10 rounded-full shadow-md border-2 border-pink-300 bg-white">
         <span class="text-2xl font-extrabold text-pink-600 font-serif tracking-wider drop-shadow">WedStory</span>
       </div>
-      <nav class="space-x-6">
-        <a href="index.php" class="text-gray-600 hover:text-pink-600 font-semibold transition-colors duration-300">Home</a>
+      <nav class="space-x-10">
+        <a href="/index.php" class="text-gray-600 hover:text-pink-600 font-semibold transition-colors duration-300">Home</a>
         <a href="./Vendor/vendors.php" class="text-gray-600 hover:text-pink-600 font-semibold transition-colors duration-300">Vendors</a>
-        <a href="cart.php" class="text-gray-600 hover:text-pink-600 font-semibold transition-colors duration-300">Cart</a>
+        <a href="./index.php#about" class="text-gray-600 hover:text-pink-600 font-semibold transition-colors duration-300">About</a>
+        <a href="./index.php#contact" class="text-gray-600 hover:text-pink-600 font-semibold transition-colors duration-300">Contact</a>
       </nav>
     </div>
   </header>
