@@ -44,7 +44,7 @@
            Register
         </a>
         <p class="text-center text-gray-500 text-sm">
-            or <a href="#vendors" class="text-blush underline">continue as guest</a>
+            or <a href="./Vendor/vendors.php" class="text-blush underline">continue as guest</a>
             <script>
             document.addEventListener('DOMContentLoaded', function() {
               const guestLink = document.querySelector('a[href="#vendors"]');
