@@ -1,11 +1,10 @@
 <?php
 session_start();
-
-// Hapus semua data session
-$_SESSION = [];
-session_unset();
 session_destroy();
 
-// Redirect ke login.php dengan pesan sukses
-header("Location: ../login.php?logout=1");
+// Ambil URL redirect jika ada
+$redirect = isset($_GET['redirect']) ? $_GET['redirect'] : 'index.php';
+
+// Arahkan ke halaman yang diminta
+header("Location: $redirect");
 exit;
