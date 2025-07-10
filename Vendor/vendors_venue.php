@@ -40,7 +40,7 @@ try {
             </p>
             <p class="text-xs uppercase text-pink-500 tracking-wider mb-2"><?= htmlspecialchars($vendor['service_type']) ?></p>
             <p class="text-gray-700 text-sm mb-3 italic line-clamp-3"><?= htmlspecialchars(mb_strimwidth($vendor['description'], 0, 100, '...')) ?></p>
-            <a href="vendor_detail.php?vid=<?= $vendor['vid'] ?>" class="mt-2 inline-block px-6 py-2 bg-gradient-to-r from-pink-700 to-pink-400 text-white rounded-full font-semibold shadow hover:from-pink-800 hover:to-pink-500 transition text-center">Lihat Detail</a>
+            <a href="vendors_detail.php?id=<?= $vendor['id'] ?>" class="mt-2 inline-block px-6 py-2 bg-gradient-to-r from-pink-700 to-pink-400 text-white rounded-full font-semibold shadow hover:from-pink-800 hover:to-pink-500 transition text-center">Lihat Detail</a>
           </div>
         </div>
       <?php endforeach; ?>

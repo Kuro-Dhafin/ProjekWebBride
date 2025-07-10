@@ -1,25 +1,22 @@
 <?php
+$base = '/projekWebBride';
 include('../partials/header.php');
 require_once('../includes/db.php');
 
-$db  = new Database();
-$pdo = $db->getConnection();
-
-
-// Ambil vendor berdasarkan vid dari URL
-if (!isset($_GET['vid'])) {
-    header('Location: vendors_style.php');
+if (!isset($_GET['id'])) {
+    echo "<div class='text-center py-10 text-gray-400'>Vendor tidak ditemukan.</div>";
     exit;
 }
 
-$vid = intval($_GET['vid']);
-$stmt = $pdo->prepare("SELECT * FROM vendors WHERE vid = ?");
-$stmt->execute([$vid]);
+$db = new Database();
+$pdo = $db->getConnection();
+
+$stmt = $pdo->prepare("SELECT * FROM vendors WHERE id = ?");
+$stmt->execute([$_GET['id']]);
 $vendor = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$vendor) {
-    echo "<p class='text-center text-red-500'>Vendor tidak ditemukan.</p>";
-    include('../partials/footer.php');
+    echo "<div class='text-center py-10 text-gray-400'>Vendor tidak ditemukan.</div>";
     exit;
 }
 
@@ -63,7 +60,7 @@ $images = $galeri->fetchAll(PDO::FETCH_ASSOC);
       <div class="relative overflow-hidden rounded-lg shadow-lg">
         <div id="miniCarousel" class="flex transition-transform duration-500">
           <?php foreach ($images as $img): ?>
-            <img src="../uploads/<?= htmlspecialchars($img['image_path']) ?>" class="w-full h-72 object-cover flex-shrink-0 rounded">
+            <img src="<?= $base ?>/uploads/<?= htmlspecialchars($img['image_path']) ?>" class="w-full h-72 object-cover flex-shrink-0 rounded">
           <?php endforeach; ?>
         </div>
         <button onclick="prevMini()" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-200">&#8592;</button>

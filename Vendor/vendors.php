@@ -50,9 +50,9 @@ include($_SERVER['DOCUMENT_ROOT'] . $base . '/partials/header.php');
               </p>
             </div>
             <div class="mt-4">
-              <a href="<?= $base ?>/Vendor/vendor_detail.php?vid=<?= $vendor['vid'] ?>"
+              <a href="<?= $base ?>/Vendor/vendors_detail.php?id=<?= $vendor['id'] ?>"
                  class="inline-block px-6 py-2 bg-pink-600 text-white text-sm font-semibold rounded-full shadow hover:bg-pink-700 transition">
-                Lihat Detail
+                 Lihat Detail
               </a>
             </div>
           </div>
