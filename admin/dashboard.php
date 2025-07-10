@@ -468,9 +468,7 @@ $recentTransactions = $stmtRecent->fetchAll(PDO::FETCH_ASSOC);
     </div>
 
 
-      <div class="view-all">
-        <button class="btn btn-outline-pink">
-          <i class="fas fa-list"></i> View All Transactions
+
         </button>
       </div>
     </div>
