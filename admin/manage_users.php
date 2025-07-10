@@ -10,7 +10,7 @@ require_once '../includes/db.php';
 $db = new Database();
 $conn = $db->getConnection();
 
-// Handle delete
+
 if (isset($_GET['delete'])) {
   $id = intval($_GET['delete']);
   $stmt = $conn->prepare("DELETE FROM users WHERE id = ? AND role IN ('vendor', 'client', 'member')");
@@ -19,7 +19,7 @@ if (isset($_GET['delete'])) {
   exit;
 }
 
-// Handle search
+
 $keyword = $_GET['search'] ?? '';
 $query = "SELECT * FROM users WHERE role IN ('vendor', 'client', 'member')";
 $params = [];

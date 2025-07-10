@@ -7,7 +7,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
 
 require '../vendor/autoload.php';
 require_once '../includes/db.php';
-include '../includes/admin_header.php'; // SUDAH ada <html>, <head>, <body>
+include '../includes/admin_header.php'; 
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;

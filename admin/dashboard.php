@@ -466,10 +466,8 @@ $recentTransactions = $stmtRecent->fetchAll(PDO::FETCH_ASSOC);
         </div>
       </div>
     </div>
-
-
-
         </button>
+
       </div>
     </div>
   </div>

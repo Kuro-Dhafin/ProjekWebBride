@@ -13,29 +13,29 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
 $db = new Database();
 $conn = $db->getConnection();
 
-// Cek jika form disubmit
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $role = $_POST['role'] ?? '';
   $subject = $_POST['subject'] ?? 'Informasi Transaksi Sunne';
   $message = $_POST['message'] ?? 'Terlampir adalah data transaksi.';
 
-  // Ambil semua email sesuai role
+
   $stmt = $conn->prepare("SELECT email FROM users WHERE role = ?");
   $stmt->execute([$role]);
   $emails = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
-  $attachmentPath = '../generated/transactions.pdf'; // path PDF yang telah dibuat
+  $attachmentPath = '../generated/transactions.pdf'; 
 
   foreach ($emails as $email) {
     $mail = new PHPMailer(true);
 
     try {
-      // Pengaturan SMTP (ganti sesuai hosting/emailmu)
+    
       $mail->isSMTP();
       $mail->Host = 'smtp.gmail.com';
       $mail->SMTPAuth = true;
       $mail->Username = 'lizdefliz@gmail.com';
-      $mail->Password = 'bqly emha qryc cvgj'; // bisa pakai app password
+      $mail->Password = 'bqly emha qryc cvgj'; 
       $mail->SMTPSecure = 'tls';
       $mail->Port = 587;
 
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!-- Form untuk kirim email -->
+
 <form method="POST" style="padding: 30px; max-width: 600px; margin: auto;">
   <h2>Kirim Email ke Semua User</h2>
   <label>Role:</label>

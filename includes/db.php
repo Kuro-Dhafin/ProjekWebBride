@@ -13,7 +13,7 @@ class Database {
         $this->conn = null;
 
         try {
-            $this->conn = new PDO(
+            $this->conn =   new PDO(
               "mysql:host={$this->host};dbname={$this->db_name};charset=utf8mb4",
               $this->username,
               $this->password

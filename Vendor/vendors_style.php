@@ -1,4 +1,5 @@
 <?php
+$base = '/projekWebBride';
 include('../partials/header.php');
 require_once('../includes/db.php');
 
@@ -27,7 +28,7 @@ $vendors = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition group border border-pink-100">
           <div class="relative">
-            <img src="uploads/<?= htmlspecialchars($vendor['profile_image']) ?>" 
+            <img src="<?= $base ?>/uploads/<?= htmlspecialchars($vendor['profile_image']) ?>" 
                  alt="<?= htmlspecialchars($vendor['company_name']) ?>" 
                  class="w-full h-64 object-cover group-hover:scale-105 transition duration-300">
             <div class="absolute inset-0 bg-gradient-to-t from-pink-700/60 to-transparent opacity-70"></div>

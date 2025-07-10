@@ -74,7 +74,7 @@
     <i class="fas fa-home"></i> Dashboard
   </a>
 
-  <a href="dashboard.php#transactions-section" class="nav-btn">
+  <a href="transactions.php" class="nav-btn">
     <i class="fas fa-shopping-cart"></i> Transactions
   </a>
 

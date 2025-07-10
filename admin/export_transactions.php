@@ -7,7 +7,7 @@ use Dompdf\Options;
 
 session_start();
 
-// Hanya admin yang boleh akses
+
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
   header("Location: ../login.php");
   exit;
@@ -16,7 +16,7 @@ if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'admin') {
 $db = new Database();
 $conn = $db->getConnection();
 
-// Ambil parameter filter tanggal jika ada
+
 $from = $_GET['from'] ?? null;
 $to = $_GET['to'] ?? null;
 
@@ -43,7 +43,7 @@ if ($from && $to) {
 
 $transactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Buat HTML
+
 $html = "<h2 style='text-align: center;'>$title</h2><hr>";
 $html .= "<table width='100%' border='1' cellpadding='8' cellspacing='0'>";
 $html .= "<thead>
@@ -70,7 +70,7 @@ foreach ($transactions as $tx) {
 
 $html .= "</tbody></table>";
 
-// Generate PDF
+
 $options = new Options();
 $options->set('isHtml5ParserEnabled', true);
 $options->set('isRemoteEnabled', true);

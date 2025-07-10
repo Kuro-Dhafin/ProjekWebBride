@@ -22,11 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         header("Location: admin/dashboard.php");
         break;
       case 'vendor':
-        header("Location: vendor/dashboard.php");
+        header("Location: Vendor/vendors.php");
         break;
       case 'client':
       case 'member':
-        header("Location: client/dashboard.php");
+        header("Location: Vendor/vendors.php");
         break;
       default:
         $error = "Role tidak dikenal.";
