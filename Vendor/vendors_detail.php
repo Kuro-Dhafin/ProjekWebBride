@@ -5,6 +5,7 @@ require_once('../includes/db.php');
 
 if (!isset($_GET['id'])) {
     echo "<div class='text-center py-10 text-gray-400'>Vendor tidak ditemukan.</div>";
+    include('../partials/footer.php');
     exit;
 }
 
@@ -17,6 +18,7 @@ $vendor = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$vendor) {
     echo "<div class='text-center py-10 text-gray-400'>Vendor tidak ditemukan.</div>";
+    include('../partials/footer.php');
     exit;
 }
 
@@ -60,7 +62,7 @@ $images = $galeri->fetchAll(PDO::FETCH_ASSOC);
       <div class="relative overflow-hidden rounded-lg shadow-lg">
         <div id="miniCarousel" class="flex transition-transform duration-500">
           <?php foreach ($images as $img): ?>
-            <img src="<?= $base ?>/uploads/<?= htmlspecialchars($img['image_path']) ?>" class="w-full h-72 object-cover flex-shrink-0 rounded">
+            <img src="../uploads/<?= htmlspecialchars($img['image_path']) ?>" class="w-full h-72 object-cover flex-shrink-0 rounded">
           <?php endforeach; ?>
         </div>
         <button onclick="prevMini()" class="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-200">&#8592;</button>
