@@ -2,6 +2,10 @@
 include('../partials/header.php');
 include('../includes/db.php');
 
+
+$db  = new Database();
+$pdo = $db->getConnection();
+
 // Ambil vendor_id dari URL
 $vendor_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
