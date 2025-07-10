@@ -1,1 +1,0 @@
-$db  = new Database();
