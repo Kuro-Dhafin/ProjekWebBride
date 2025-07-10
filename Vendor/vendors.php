@@ -1,4 +1,7 @@
-<?php include('../partials/header.php'); ?>
+<?php
+$base = '/projekWebBride';
+include($_SERVER['DOCUMENT_ROOT'] . $base . '/partials/header.php');
+?>
 
 <section id="vendors" class="py-20 bg-pink-50 text-center">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -6,13 +9,13 @@
 
     <!-- Pilihan Kategori -->
     <div class="flex flex-wrap justify-center gap-4 mb-12">
-      <a href="vendors_photography.php" class="bg-white border border-pink-300 text-pink-700 font-medium px-5 py-2 rounded-full text-sm hover:bg-pink-100 transition">Photography</a>
-      <a href="vendors_style.php" class="bg-white border border-pink-300 text-pink-700 font-medium px-5 py-2 rounded-full text-sm hover:bg-pink-100 transition">Wedding Style</a>
-      <a href="vendors_venue.php" class="bg-white border border-pink-300 text-pink-700 font-medium px-5 py-2 rounded-full text-sm hover:bg-pink-100 transition">Venue</a>
+      <a href="<?= $base ?>/Vendor/vendors_photography.php" class="bg-white border border-pink-300 text-pink-700 font-medium px-5 py-2 rounded-full text-sm hover:bg-pink-100 transition">Photography</a>
+      <a href="<?= $base ?>/Vendor/vendors_style.php" class="bg-white border border-pink-300 text-pink-700 font-medium px-5 py-2 rounded-full text-sm hover:bg-pink-100 transition">Wedding Style</a>
+      <a href="<?= $base ?>/Vendor/vendors_venue.php" class="bg-white border border-pink-300 text-pink-700 font-medium px-5 py-2 rounded-full text-sm hover:bg-pink-100 transition">Venue</a>
     </div>
 
     <?php
-    require_once('../includes/db.php');
+    require_once($_SERVER['DOCUMENT_ROOT'] . $base . '/includes/db.php');
     $db = new Database();
     $pdo = $db->getConnection();
     $vendors = [];
@@ -27,7 +30,7 @@
       <?php foreach ($vendors as $vendor): ?>
         <div class="bg-white border border-pink-100 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
           <div class="relative aspect-video overflow-hidden">
-            <img src="../uploads/<?= htmlspecialchars($vendor['profile_image']) ?>"
+            <img src="<?= $base ?>/uploads/<?= htmlspecialchars($vendor['profile_image']) ?>"
                  alt="<?= htmlspecialchars($vendor['company_name']) ?>"
                  class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105">
             <span class="absolute top-3 left-3 bg-white text-pink-600 font-semibold text-xs px-3 py-1 rounded-full shadow border border-pink-300">
@@ -47,7 +50,7 @@
               </p>
             </div>
             <div class="mt-4">
-              <a href="vendor_detail.php?vid=<?= $vendor['vid'] ?>"
+              <a href="<?= $base ?>/Vendor/vendor_detail.php?vid=<?= $vendor['vid'] ?>"
                  class="inline-block px-6 py-2 bg-pink-600 text-white text-sm font-semibold rounded-full shadow hover:bg-pink-700 transition">
                 Lihat Detail
               </a>
@@ -65,4 +68,4 @@
   </div>
 </section>
 
-<?php include('../partials/footer.php'); ?>
+<?php include($_SERVER['DOCUMENT_ROOT'] . $base . '/partials/footer.php'); ?>

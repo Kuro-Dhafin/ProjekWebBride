@@ -11,10 +11,10 @@ include '../includes/admin_header.php';
 $db = new Database();
 $conn = $db->getConnection();
 
-// Ambil ID dari URL
+
 $id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-// Ambil data user yang akan diedit
+
 $stmt = $conn->prepare("SELECT * FROM users WHERE id = ?");
 $stmt->execute([$id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -25,7 +25,7 @@ if (!$user) {
   exit;
 }
 
-// Tangani update saat form dikirim
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $name  = $_POST['name'] ?? '';
   $email = $_POST['email'] ?? '';
