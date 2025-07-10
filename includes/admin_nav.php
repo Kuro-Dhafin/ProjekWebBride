@@ -1,7 +1,23 @@
-<!-- FontAwesome for icons -->
+<!-- FontAwesome untuk ikon -->
 <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 
 <style>
+  .nav-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
   .nav-btn {
     position: relative;
     border: none;
@@ -17,9 +33,10 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    text-decoration: none;
     margin: 5px;
   }
-  
+
   .nav-btn::before {
     content: '';
     position: absolute;
@@ -31,49 +48,33 @@
     z-index: -1;
     transition: width 0.4s ease;
   }
-  
+
   .nav-btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 25px rgba(232, 62, 140, 0.2);
     color: #c2185b;
   }
-  
+
   .nav-btn:hover::before {
     width: 100%;
   }
-  
+
   .nav-btn i {
     transition: transform 0.3s ease;
   }
-  
+
   .nav-btn:hover i {
     transform: scale(1.2);
   }
-  
-  .nav-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    padding: 15px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    margin-bottom: 30px;
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
 </style>
 
+<!-- Navbar Tombol -->
 <div class="nav-container">
   <a href="dashboard.php" class="nav-btn">
     <i class="fas fa-home"></i> Dashboard
   </a>
 
-  <a href="manage_users.php" class="nav-btn">
-    <i class="fas fa-users-cog"></i> Manage Users
-  </a>
-
-  <a href="transactions.php" class="nav-btn">
+  <a href="dashboard.php#transactions-section" class="nav-btn">
     <i class="fas fa-shopping-cart"></i> Transactions
   </a>
 
@@ -81,7 +82,8 @@
     <i class="fas fa-envelope"></i> Broadcast
   </a>
 
-  <a href="../logout.php" class="nav-btn">
+  <!-- Tombol Logout arahkan ke register.php -->
+  <a href="../logout.php?redirect=register.php" class="nav-btn">
     <i class="fas fa-sign-out-alt"></i> Logout
   </a>
 </div>
